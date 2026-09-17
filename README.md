@@ -10,9 +10,30 @@
 [![Wayland](https://img.shields.io/badge/Wayland-Layer--Shell-00aaee.svg)](#features)
 [![Three.js](https://img.shields.io/badge/WebGL-Three.js-black.svg)](#features)
 [![GTK3](https://img.shields.io/badge/Toolkit-GTK3-4a90e2.svg)](#requirements)
+[![Release](https://img.shields.io/github/v/release/conlongnhong/sphere-launcher?color=orange)](https://github.com/conlongnhong/sphere-launcher/releases)
 [![CI](https://github.com/conlongnhong/sphere-launcher/actions/workflows/ci.yml/badge.svg)](https://github.com/conlongnhong/sphere-launcher/actions)
 
 [English](README.md) • [Tiếng Việt](README.vi.md)
+
+<br/>
+
+<img src="assets/preview.png" alt="Holographic Sphere Launcher Preview" width="90%" style="border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);" />
+
+</div>
+
+---
+
+## 🎬 Live Demo & Video Showcase
+
+<div align="center">
+
+<img src="assets/demo.webp" alt="Sphere Launcher Live Animation" width="85%" style="border-radius: 10px;" />
+
+<p>
+  🎥 <b>Full 1080p 60fps Recording</b>: 
+  <a href="https://github.com/conlongnhong/sphere-launcher/releases/download/v1.0.0/recording_2026-09-17_19.26.25.mp4"><b>Download / Watch recording_2026-09-17_19.26.25.mp4 (49MB)</b></a> 
+  • <a href="assets/demo.mp4">Local MP4 Clip (3MB)</a>
+</p>
 
 </div>
 
@@ -28,21 +49,6 @@
 - **Warm IPC Daemon**: Instantaneous hotkey toggling via a lightweight Unix socket daemon (`/tmp/sphere_launcher.sock`).
 - **Offline & Self-Contained**: Three.js, map boundary topologies (`land.json`, `countries-110m.json`), and shaders are packaged locally. No network access required at runtime.
 - **Graceful Fallback**: Automatically falls back to an undecorated fullscreen window if the compositor lacks `wlr-layer-shell`.
-
----
-
-## 📸 Preview
-
-```
-               .---.                 
-             /       \               
-            |  (🌐)   |              [ App 4 ]
- [ App 1 ] -'-.     .-'- [ App 3 ]   [ App 5 ]
- [ App 2 ]     '---'                 [ App 6 ]
-           ┌─────────────────┐
-           │ 🔍 Search apps...│
-           └─────────────────┘
-```
 
 ---
 
@@ -154,6 +160,26 @@ sphere-launcher --quit     # Terminate background daemon
 sphere-launcher --version  # Print version
 sphere-launcher --help     # Show help information
 ```
+
+---
+
+## 💖 Support / Donate
+
+If you enjoy **Holographic Sphere Launcher** and want to support the project, consider buying me a coffee! Your support keeps this project alive and continuously evolving.
+
+<div align="center">
+
+<img src="assets/donate.png" alt="Donate QR Code" width="280px" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);" />
+
+<p>
+  <b>MoMo / VietQR / Napas 247</b><br/>
+  <b>NGUYỄN NAM DƯƠNG</b><br/>
+  <code>STK: *******220</code>
+</p>
+
+*Thank you so much for your generosity and support! 🙏*
+
+</div>
 
 ---
 

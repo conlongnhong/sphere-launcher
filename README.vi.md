@@ -7,11 +7,33 @@
 **Trình khởi chạy ứng dụng (Application Launcher) 3D Hologram siêu đẹp dành cho Linux Wayland (Hyprland, Sway, River, Wayfire...).**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Wayland](https://img.shields.io/badge/Wayland-Layer--Shell-00aaee.svg)](#tính-năng)
-[![Three.js](https://img.shields.io/badge/WebGL-Three.js-black.svg)](#tính-năng)
+[![Wayland](https://img.shields.io/badge/Wayland-Layer--Shell-00aaee.svg)](#tính-năng-nổi-bật)
+[![Three.js](https://img.shields.io/badge/WebGL-Three.js-black.svg)](#tính-năng-nổi-bật)
 [![GTK3](https://img.shields.io/badge/Toolkit-GTK3-4a90e2.svg)](#cài-đặt-gói-phụ-thuộc)
+[![Release](https://img.shields.io/github/v/release/conlongnhong/sphere-launcher?color=orange)](https://github.com/conlongnhong/sphere-launcher/releases)
+[![CI](https://github.com/conlongnhong/sphere-launcher/actions/workflows/ci.yml/badge.svg)](https://github.com/conlongnhong/sphere-launcher/actions)
 
 [English](README.md) • [Tiếng Việt](README.vi.md)
+
+<br/>
+
+<img src="assets/preview.png" alt="Ảnh minh họa Holographic Sphere Launcher" width="90%" style="border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);" />
+
+</div>
+
+---
+
+## 🎬 Video Trải Nghiệm Thực Tế
+
+<div align="center">
+
+<img src="assets/demo.webp" alt="Hình động trải nghiệm Quả Cầu Launcher" width="85%" style="border-radius: 10px;" />
+
+<p>
+  🎥 <b>Xem video gốc 1080p 60fps</b>: 
+  <a href="https://github.com/conlongnhong/sphere-launcher/releases/download/v1.0.0/recording_2026-09-17_19.26.25.mp4"><b>Tải xuống / Xem recording_2026-09-17_19.26.25.mp4 (49MB)</b></a> 
+  • <a href="assets/demo.mp4">Xem clip ngắn cục bộ (3MB)</a>
+</p>
 
 </div>
 
@@ -138,6 +160,26 @@ sphere-launcher --quit     # Dừng hẳn daemon chạy ngầm
 sphere-launcher --version  # Xem phiên bản
 sphere-launcher --help     # Xem bảng hướng dẫn các lệnh
 ```
+
+---
+
+## 💖 Ủng Hộ / Donate
+
+Nếu bạn thích **Quả Cầu Launcher** và thấy nó hữu ích, bạn có thể mời mình một ly cà phê để tiếp thêm động lực phát triển thêm nhiều tính năng mới nhé!
+
+<div align="center">
+
+<img src="assets/donate.png" alt="Mã QR Donate" width="280px" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);" />
+
+<p>
+  <b>MoMo / VietQR / Napas 247</b><br/>
+  <b>NGUYỄN NAM DƯƠNG</b><br/>
+  <code>STK: *******220</code>
+</p>
+
+*Cảm ơn sự ủng hộ và đồng hành của bạn rất nhiều! 🙏*
+
+</div>
 
 ---
 
