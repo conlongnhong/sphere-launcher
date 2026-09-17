@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holographic Sphere Launcher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Key Navigation Hints -->
+        <div class="key-hints">
+            <span><span class="key-badge">↑↓←→</span>Navigate</span>
+            <span><span class="key-badge">Enter</span>Launch</span>
+            <span><span class="key-badge">Esc</span>Close</span>
+        </div>
+
+        <!-- Top speed badge matching video -->
+        <div id="globe-speed" class="globe-top-pill" aria-live="polite">
+            <span>▶</span> 1.5x
+        </div>
+
+        <!-- Three.js 3D WebGL Globe Canvas -->
+        <canvas id="globe-canvas"></canvas>
+        <div id="globe-interaction" aria-label="Drag to rotate the globe; scroll to change speed" title="Drag to rotate · Scroll to change speed"></div>
+
+        <!-- Bottom status pill switch matching video -->
+        <div class="globe-bottom-pill">
+            <div class="globe-bottom-pill-dot"></div>
+        </div>
+
+        <!-- Result Count Badge matching video -->
+        <div id="result-count" class="result-count"></div>
+
+        <!-- Dynamic SVG Bezier Traces -->
+        <svg id="traces-svg">
+            <path id="trace-left-0" class="trace-line" pathLength="100" />
+            <path id="trace-left-1" class="trace-line" pathLength="100" />
+            <path id="trace-left-2" class="trace-line" pathLength="100" />
+            <path id="trace-right-0" class="trace-line" pathLength="100" />
+            <path id="trace-right-1" class="trace-line" pathLength="100" />
+            <path id="trace-right-2" class="trace-line" pathLength="100" />
+            <circle id="dot-left-0" class="trace-dot" r="3" />
+            <circle id="dot-left-1" class="trace-dot" r="3" />
+            <circle id="dot-left-2" class="trace-dot" r="3" />
+            <circle id="dot-right-0" class="trace-dot" r="3" />
+            <circle id="dot-right-1" class="trace-dot" r="3" />
+            <circle id="dot-right-2" class="trace-dot" r="3" />
+        </svg>
+
+        <!-- Floating Satellite Cards -->
+        <div class="cards-layout">
+            <!-- Left 3 Cards -->
+            <div class="cards-column cards-left">
+                <div class="satellite-card" id="card-left-0" data-index="0">
+                    <div class="card-icon-wrapper">
+                        <span class="card-icon-fallback">?</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">App Name</div>
+                        <div class="card-subtitle">Application description</div>
+                    </div>
+                    <div class="card-anchor"></div>
+                </div>
+                <div class="satellite-card" id="card-left-1" data-index="1">
+                    <div class="card-icon-wrapper">
+                        <span class="card-icon-fallback">?</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">App Name</div>
+                        <div class="card-subtitle">Application description</div>
+                    </div>
+                    <div class="card-anchor"></div>
+                </div>
+                <div class="satellite-card" id="card-left-2" data-index="2">
+                    <div class="card-icon-wrapper">
+                        <span class="card-icon-fallback">?</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">App Name</div>
+                        <div class="card-subtitle">Application description</div>
+                    </div>
+                    <div class="card-anchor"></div>
+                </div>
+            </div>
+
+            <!-- Right 3 Cards -->
+            <div class="cards-column cards-right">
+                <div class="satellite-card" id="card-right-0" data-index="3">
+                    <div class="card-anchor"></div>
+                    <div class="card-icon-wrapper">
+                        <span class="card-icon-fallback">?</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">App Name</div>
+                        <div class="card-subtitle">Application description</div>
+                    </div>
+                </div>
+                <div class="satellite-card" id="card-right-1" data-index="4">
+                    <div class="card-anchor"></div>
+                    <div class="card-icon-wrapper">
+                        <span class="card-icon-fallback">?</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">App Name</div>
+                        <div class="card-subtitle">Application description</div>
+                    </div>
+                </div>
+                <div class="satellite-card" id="card-right-2" data-index="5">
+                    <div class="card-anchor"></div>
+                    <div class="card-icon-wrapper">
+                        <span class="card-icon-fallback">?</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">App Name</div>
+                        <div class="card-subtitle">Application description</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Capsule Search Pill -->
+        <div class="search-capsule-wrapper">
+            <div class="search-capsule">
+                <div class="search-icon-left">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
+                <input type="text" id="search-input" class="search-input" placeholder="Search applications..." autofocus autocomplete="off" spellcheck="false" />
+                <div class="search-icon-right">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="three.min.js"></script>
+    <script src="globe.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

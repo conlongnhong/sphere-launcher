@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check Python syntax
+        run: |
+          python3 -m py_compile sphere_launcher/main.py
+
+      - name: Check JavaScript syntax
+        run: |
+          node --check sphere_launcher/web/app.js
+          node --check sphere_launcher/web/globe.js
+
+      - name: Run Geometry & Projection Tests
+        run: |
+          node --test sphere_launcher/tests/geometry.test.cjs
+
+      - name: Check Shell Scripts
+        run: |
+          bash -n bin/sphere-launcher
+          bash -n bin/sphere-toggle
+          bash -n scripts/install.sh
+          bash -n scripts/uninstall.sh

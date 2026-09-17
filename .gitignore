@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Logs & sockets
+*.log
+*.sock
+/tmp/sphere_launcher.*
+
+# Testing & Node
+node_modules/
+.pytest_cache/
+coverage/
+
+# OS / Editor
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Packaging builds
+pkg/
+src/
+*.pkg.tar.zst
+*.pkg.tar.xz

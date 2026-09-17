@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# Holographic Sphere Launcher Toggle Script
+SOCKET="/tmp/sphere_launcher.sock"
+
+# Dynamically locate main.py or sphere-launcher binary
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ -n "${SPHERE_DIR:-}" ] && [ -f "$SPHERE_DIR/main.py" ]; then
+    LAUNCHER_BIN="$SPHERE_DIR/main.py"
+elif [ -f "$SCRIPT_DIR/../sphere_launcher/main.py" ]; then
+    LAUNCHER_BIN="$SCRIPT_DIR/../sphere_launcher/main.py"
+elif [ -f "$SCRIPT_DIR/../main.py" ]; then
+    LAUNCHER_BIN="$SCRIPT_DIR/../main.py"
+elif [ -f "$HOME/.local/share/sphere-launcher/main.py" ]; then
+    LAUNCHER_BIN="$HOME/.local/share/sphere-launcher/main.py"
+elif [ -f "/usr/share/sphere-launcher/main.py" ]; then
+    LAUNCHER_BIN="/usr/share/sphere-launcher/main.py"
+elif [ -f "/usr/local/share/sphere-launcher/main.py" ]; then
+    LAUNCHER_BIN="/usr/local/share/sphere-launcher/main.py"
+else
+    LAUNCHER_BIN="$(command -v sphere-launcher 2>/dev/null || true)"
+fi
+
+if [ -S "$SOCKET" ]; then
+    if python3 -c "
+import socket, sys
+try:
+    s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+    s.settimeout(0.5)
+    s.connect('$SOCKET')
+    s.sendall(b'toggle\n')
+    s.recv(1024)
+    s.close()
+    sys.exit(0)
+except Exception:
+    sys.exit(1)
+"; then
+        exit 0
+    fi
+fi
+
+# Clean stale socket if it exists but wasn't responsive
+if [ -e "$SOCKET" ]; then
+    rm -f "$SOCKET" 2>/dev/null || true
+fi
+
+# Not running or stale socket: start daemon detached
+if [ -z "$LAUNCHER_BIN" ]; then
+    echo "[SphereLauncher] Error: Could not find sphere-launcher executable." >&2
+    exit 1
+fi
+
+setsid python3 -u "$LAUNCHER_BIN" > /tmp/sphere_launcher.log 2>&1 &

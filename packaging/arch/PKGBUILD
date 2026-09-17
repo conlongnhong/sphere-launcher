@@ -1,0 +1,46 @@
+# Maintainer: Yang <176593508+conlongnhong@users.noreply.github.com>
+pkgname=sphere-launcher-git
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Holographic 3D Globe Application Launcher for Wayland (GTK3 Layer-Shell, WebKit2GTK, Three.js)"
+arch=('any')
+url="https://github.com/conlongnhong/sphere-launcher"
+license=('MIT')
+depends=(
+    'gtk3'
+    'gtk-layer-shell'
+    'webkit2gtk-4.1'
+    'python'
+    'python-gobject'
+)
+makedepends=('git')
+provides=('sphere-launcher')
+conflicts=('sphere-launcher')
+source=("git+https://github.com/conlongnhong/sphere-launcher.git")
+sha256sums=('SKIP')
+
+pkgver() {
+    cd "${srcdir}/sphere-launcher"
+    printf "1.0.0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+    cd "${srcdir}/sphere-launcher"
+
+    # Install python code & web assets
+    install -dm755 "${pkgdir}/usr/share/sphere-launcher"
+    cp -r sphere_launcher/* "${pkgdir}/usr/share/sphere-launcher/"
+
+    # Install binary wrappers
+    install -dm755 "${pkgdir}/usr/bin"
+    install -m755 bin/sphere-launcher "${pkgdir}/usr/bin/sphere-launcher"
+    install -m755 bin/sphere-toggle "${pkgdir}/usr/bin/sphere-toggle"
+
+    # Install desktop entry
+    install -dm755 "${pkgdir}/usr/share/applications"
+    install -m644 desktop/sphere-launcher.desktop "${pkgdir}/usr/share/applications/sphere-launcher.desktop"
+
+    # Install license
+    install -dm755 "${pkgdir}/usr/share/licenses/${pkgname}"
+    install -m644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
